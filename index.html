@@ -330,7 +330,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-       let player;
+      let player;
 let isMusicPlaying = true;
 
 function onYouTubeIframeAPIReady() {
@@ -343,7 +343,7 @@ function onYouTubeIframeAPIReady() {
             'controls': 0,
             'disablekb': 1,
             'loop': 1,
-            'playlist': 'vnpXXlaHp2g',
+            'playlist': 'vnpXXlaHp2g'
         },
         events: {
             'onReady': onPlayerReady
@@ -356,18 +356,13 @@ function onPlayerReady(event) {
     updateMusicControl();
 }
 
-function onPlayerReady(event) {
-    // No iniciar el video aquí
-    updateMusicControl(); // Asegúrate de actualizar el control del botón
-}
-
 function toggleMusic() {
     if (player && player.getPlayerState() !== undefined) {
         if (isMusicPlaying) {
-            player.pauseVideo(); // Pausa el video si está reproduciendo
+            player.pauseVideo();
             isMusicPlaying = false;
         } else {
-            player.playVideo(); // Reproduce el video si está pausado
+            player.playVideo();
             isMusicPlaying = true;
         }
         updateMusicControl();
