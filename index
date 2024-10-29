@@ -1,0 +1,460 @@
+<html><head><base href="https://websim.bing/sol/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumpleaños Yamiles</title>
+    <link rel="icon" href="https://png.pngtree.com/png-clipart/20220302/original/pngtree-pink-flowers-png-image_7361336.png" type="image/png">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #1d1f20;
+            margin: 0;
+            padding: 0;
+            color: #e0e0e0;
+            perspective: 1000px;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(255, 82, 82, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            color: #ff5252;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeInTitle 2s ease-in-out;
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .envelopes-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 150px;
+            background: url('https://media4.giphy.com/media/OzQZEnGwFTuYxBKsAC/giphy.gif?cid=6c09b95217xoxw095wnt633ryh2kwdlwrtk6jfodc7bq5eim&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: linear-gradient(145deg, #2a2c2e, #1a1c1d);
+            padding: 40px;
+            box-shadow: 8px 8px 16px #131415, -8px -8px 16px #26282a;
+            border-radius: 12px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            display: none;
+        }
+
+        .poem {
+            font-size: 1.5em;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .poem span {
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .poem span:hover {
+            color: #ff5252;
+            transform: scale(1.1);
+        }
+
+        #musicControl {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ff5252;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #musicControl:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        button {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 4px 4px 8px #131415, -4px -4px 8px #26282a;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #ff1744;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .poem { font-size: 1.2em; }
+            button { font-size: 0.9em; padding: 8px 16px; }
+        }
+
+        .gif-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: url('https://media.tenor.com/Ul8LOoNURUoAAAAi/kirby-walk.gif') no-repeat center center;
+            background-size: contain;
+            animation: moveGif 5s linear infinite;
+        }
+
+        @keyframes moveGif {
+            0% { left: -100px; }
+            100% { left: calc(100% + 100px); }
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://media.tenor.com/D1o2SU5HIdIAAAAi/estrella-bling.gif') no-repeat center center;
+            background-size: contain;
+            animation: flyButterfly 10s linear infinite;
+        }
+
+        @keyframes flyButterfly {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(100vw, 50vh); }
+            50% { transform: translate(50vw, 100vh); }
+            75% { transform: translate(0, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://img1.picmix.com/output/stamp/normal/3/0/2/3/1953203_36ee2.gif') no-repeat center center;
+            background-size: contain;
+        }
+
+        .flower.top-left { top: 0; left: 0; }
+        .flower.top-right { top: 0; right: 0; }
+        .flower.bottom-left { bottom: 0; left: 0; }
+        .flower.bottom-right { bottom: 0; right: 0; }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        #gift-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #gift-button:hover {
+            background-color: #ff1744;
+            transform: scale(1.05);
+        }
+
+        #gift-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2a2c2e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.5);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #gift-modal h2 {
+            color: #ff5252;
+            margin-bottom: 20px;
+        }
+
+        #gift-modal p {
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        #close-modal {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-modal:hover {
+            background-color: #ff1744;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    <button id="musicControl" onclick="toggleMusic()">🔇</button>
+    <div id="player"></div>
+    <div class="profile-pic">
+        <img src="https://scontent.fjbq1-1.fna.fbcdn.net/v/t39.30808-6/461081989_887926193263499_1768711336693470650_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHU05gJjv93ZZtOICmvvKF3rn9UmtBSZIiuf1Sa0FJkiBmNVGI-4UgKx3INSmuI4-tvgAz4SClJfkv-YCqJWncg&_nc_ohc=qQqJmaesrG8Q7kNvgHzvPAQ&_nc_zt=23&_nc_ht=scontent.fjbq1-1.fna&_nc_gid=AC7NvP-miElHv6cTJqtf9q-&oh=00_AYAzGW9qXLJdffm4kHGe09EuePJ4kMfDuh2xIIRGcG_zNw&oe=6726FD00" alt="Foto de perfil circular de Yamile" width="150" height="150">
+    </div>
+    <div class="title">Feliz Cumpleaños Yamiles</div>
+    <div class="envelopes-container">
+        <div class="envelope" onclick="abrirSobre(1)"></div>
+        <div class="envelope" onclick="abrirSobre(2)"></div>
+    </div>
+    <div id="container1" class="container">
+        <h2 class="poem-title" style="color: red;">Felicidades Yami ☺️</h2>
+        <div class="poem">
+            <span>El día en que se conmemora el milagro de tu existencia (y qué milagro más hermoso, eh), es el día en que el mundo se volvió un poquito más brillante porque, efectivamente, naciste tú. ✨</span><br><br>
+
+            <span>Te mereces todo lo mejor, y no hay tantas estrellas en la galaxia que puedan brillar lo suficiente para expresar lo increíble que eres.. Este cumpleaños es perfecto para que finalmente hagas todas esas cosas que siempre dices que harás y que luego postergas. ¡Vamos, haz eso que tienes en mente! Salta en paracaídas, aprende algo nuevo o simplemente atrévete a vivir esa aventura que has estado planeando (aunque sea sin plata, jeje)..</span><br><br>
+            <span>Siempre has tenido una forma única de iluminar cualquier lugar con tu energía y alegría, y estoy muy agradecido de tenerte en mi vida. Disfruta y haz de este cumpleaños uno que recordarás por siempre. ¡Aprovecha cada momento y recuerda que te mereces todo!,</span><br><br>
+
+            <span><strong>PD: Te quiero mucho 🥰 y guárdame algo de bizcocho. ¡Feliz cumple, Yamiles! 🥳</strong></span>
+        </div>
+        <button onclick="leerPoema(1)">Felicitacion</button>
+        <button onclick="cerrarSobre(1)">Cerrar</button>
+    </div>
+    <div id="container2" class="container">
+        <h2 class="poem-title" style="color: red;">El sol que ilumina mis días</h2>
+        <div class="poem">
+            <span>Eres el sol que ilumina mis días</span><br>
+            <span>y la calma que apacigua mis noches.</span><br>
+            <span>En cada palabra tuya,</span><br>
+            <span>descubro un universo de ternura y complicidad</span><br>
+            <span>que me hace sentir completo.</span><br>
+            <span>Quiero caminar a tu lado,</span><br>
+            <span>descubrir juntos los senderos del amor</span><br>
+            <span>y construir memorias que perduren en el tiempo.</span><br><br>
+            <span>Te prometo acompañarte en cada paso,</span><br>
+            <span>ser tu apoyo incondicional y tu confidente más fiel.</span><br>
+            <span>Eres lo más hermoso que me ha pasado;</span><br>
+            <span>Dios me bendijo cuando te trajo a mi vida.</span><br>
+            <span>Eres mi oración contestada y valió la pena haber esperado.</span><br>
+            <span>Si tuviera que volver a elegir, te elegiría mil veces a ti.</span><br><br>
+            <span><strong>AUTOR- Y&A</strong></span>
+        </div>
+        <button onclick="leerPoema(2)">Leer Poema</button>
+        <button onclick="cerrarSobre(2)">Cerrar</button>
+    </div>
+    <div class="gif-container"></div>
+
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+       let player;
+let isMusicPlaying = true;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'vnpXXlaHp2g',
+        playerVars: {
+            'autoplay': 1,
+            'controls': 0,
+            'disablekb': 1,
+            'loop': 1,
+            'playlist': 'vnpXXlaHp2g',
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.playVideo();
+    updateMusicControl();
+}
+
+function onPlayerReady(event) {
+    // No iniciar el video aquí
+    updateMusicControl(); // Asegúrate de actualizar el control del botón
+}
+
+function toggleMusic() {
+    if (player && player.getPlayerState() !== undefined) {
+        if (isMusicPlaying) {
+            player.pauseVideo(); // Pausa el video si está reproduciendo
+            isMusicPlaying = false;
+        } else {
+            player.playVideo(); // Reproduce el video si está pausado
+            isMusicPlaying = true;
+        }
+        updateMusicControl();
+    }
+}
+
+function updateMusicControl() {
+    const musicControl = document.getElementById('musicControl');
+    musicControl.textContent = isMusicPlaying ? '🔊' : '🔇';
+}
+
+        function abrirSobre(num) {
+            const envelope = document.querySelectorAll('.envelope')[num - 1];
+            const container = document.getElementById(`container${num}`);
+            envelope.style.transition = 'transform 1s ease, opacity 1s ease';
+            envelope.style.transform = 'rotateX(90deg)';
+            envelope.style.opacity = '0';
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                container.style.display = 'block';
+                container.style.opacity = 1;
+                container.style.transform = 'translateY(0)';
+                lanzarConfeti();
+            }, 1000);
+        }
+
+        function cerrarSobre(num) {
+            const envelope = document.querySelectorAll('.envelope')[num - 1];
+            const container = document.getElementById(`container${num}`);
+            container.style.transition = 'transform 1s ease, opacity 1s ease';
+            container.style.transform = 'translateY(20px)';
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.style.display = 'none';
+                envelope.style.display = 'block';
+                envelope.style.opacity = '1';
+                envelope.style.transform = 'rotateX(0deg)';
+            }, 1000);
+        }
+
+        function leerPoema(num) {
+            const poema = document.querySelectorAll('.poem')[num - 1].textContent;
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(poema);
+            utterance.lang = 'es-ES';
+            synth.speak(utterance);
+        }
+
+        function lanzarConfeti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        function addButterflies() {
+            const butterflyCount = 5;
+            for (let i = 0; i < butterflyCount; i++) {
+                const butterfly = document.createElement('div');
+                butterfly.className = 'butterfly';
+                butterfly.style.left = Math.random() * 100 + 'vw';
+                butterfly.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(butterfly);
+            }
+        }
+
+        function addFlowers() {
+            const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+            positions.forEach(position => {
+                const flower = document.createElement('div');
+                flower.className = `flower ${position}`;
+                document.body.appendChild(flower);
+            });
+        }
+
+        function showGift() {
+            document.getElementById('gift-modal').style.display = 'block';
+            lanzarConfeti();
+        }
+
+        function closeGift() {
+            document.getElementById('gift-modal').style.display = 'none';
+        }
+
+        addButterflies();
+        addFlowers();
+    </script>
+</body>
+</html>
